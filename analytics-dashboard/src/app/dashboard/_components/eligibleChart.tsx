@@ -18,7 +18,7 @@ const chartConfig = {
 
 function EligibleChart() {
   const { sheetData, loading: sheetLoading } = useSheetContext();
-  const { eligibleData, loading } = useEligibleData({ sheetData });
+  const { eligibleData, loading, smallestYear, largestYear, mostEligible } = useEligibleData({ sheetData });
 
   if (loading || sheetLoading) {
     return (
@@ -56,9 +56,11 @@ function EligibleChart() {
       </CardContent>
       <CardFooter className="flex-col gap-2 text-sm">
         <div className="flex items-center gap-2 font-medium leading-none">
-          Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
+          Maximum CAFV eligible cars are from {mostEligible} <TrendingUp className="h-4 w-4" />
         </div>
-        <div className="flex items-center gap-2 leading-none text-muted-foreground">January - June 2024</div>
+        <div className="flex items-center gap-2 leading-none text-muted-foreground">
+          {smallestYear} - {largestYear}
+        </div>
       </CardFooter>
     </Card>
   );
