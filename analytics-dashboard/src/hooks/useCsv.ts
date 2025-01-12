@@ -1,6 +1,6 @@
 "use client";
 import Csv from "@/models/csv";
-import { parse } from "papaparse";
+import { parse, unparse } from "papaparse";
 import { useEffect, useState } from "react";
 
 const useCsv = () => {
@@ -30,7 +30,6 @@ const useCsv = () => {
         });
 
         if (isMounted) {
-          console.log(results);
           setData(results.data as Csv[]);
         }
       })
@@ -45,6 +44,7 @@ const useCsv = () => {
       isMounted = false; // Clean up when unmounted
     };
   }, []);
+
   return { data, loading };
 };
 

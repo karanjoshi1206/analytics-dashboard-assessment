@@ -33,9 +33,9 @@ const processData = (data: VehicleTypeData[]) => {
 };
 
 const VehichleTypeChart = () => {
-  const { sheetData, loading } = useSheetContext();
+  const { sheetData, loading: sheetLoading } = useSheetContext();
 
-  const { vehicleTypeData } = useVehicleTypeData({ sheetData: sheetData });
+  const { vehicleTypeData, loading } = useVehicleTypeData({ sheetData: sheetData });
   const chartData = processData(vehicleTypeData);
 
   const chartConfig = {
@@ -49,7 +49,7 @@ const VehichleTypeChart = () => {
     }
   };
 
-  if (loading) {
+  if (loading || sheetLoading) {
     return (
       <Card className="flex flex-col w-full rounded-none">
         <CardContent>

@@ -9,17 +9,21 @@ import { TrendingUp } from "lucide-react";
 import React from "react";
 import { Label, Pie, PieChart } from "recharts";
 
-const BranchChart = () => {
-  const { sheetData, loading } = useSheetContext();
-  const { brandData, chartConfig } = useBrandData({ sheetData });
+const BrandChart = () => {
+  const { sheetData, loading: sheetLoading } = useSheetContext();
+  const { brandData, chartConfig, loading } = useBrandData({ sheetData });
   const totalVisitors = React.useMemo(() => {
     return brandData.reduce((acc, curr) => acc + curr.total, 0);
-  }, [loading]);
+  }, [loading, brandData]);
 
-  if (loading) {
-    <Card className="flex flex-col w-full rounded-none">
-      <Skeleton className="w-full h-48" />
-    </Card>;
+  if (loading || sheetLoading) {
+    return (
+      <Card className="w-full rounded-none">
+        <CardContent className="pb-0">
+          <Skeleton className="mx-auto w-full aspect-square h-[350px]" />
+        </CardContent>
+      </Card>
+    );
   }
 
   return (
@@ -74,13 +78,10 @@ const BranchChart = () => {
         </ChartContainer>
       </CardContent>
       <CardFooter className="flex-col gap-2 text-sm">
-        <div className="flex items-center gap-2 font-medium leading-none">
-          Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
-        </div>
-        <div className="leading-none text-muted-foreground">Showing total visitors for the last 6 months</div>
+        <div className="leading-none text-muted-foreground">Showing total EVs manufactured by different brands</div>
       </CardFooter>
     </Card>
   );
 };
 
-export default BranchChart;
+export default BrandChart;

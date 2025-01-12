@@ -4,16 +4,12 @@ import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from "
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useSheetContext } from "@/context/useSheetData";
-import useCityViseData from "@/hooks/transformers_hooks/useCityViseData";
-import useCountyViseData from "@/hooks/transformers_hooks/useCountyViseData";
+import useLocationViseData from "@/hooks/transformers_hooks/useLocationViseData";
 import useChartData from "@/hooks/useChartData";
-import React from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
 
 const chartConfig = {
-  views: {
-    label: "Page Views"
-  },
   city: {
     label: "City",
     color: "hsl(var(--chart-1))"
@@ -27,16 +23,16 @@ const chartConfig = {
 const CountryChart = () => {
   const [activeChart, setActiveChart] = React.useState<keyof typeof chartConfig>("city");
 
-  const { sheetData, loading } = useSheetContext();
-  const { cityData } = useCityViseData({ sheetData });
-  const { countyData } = useCountyViseData({ sheetData });
+  const { sheetData, loading: sheetLoading } = useSheetContext();
+  const { cityData, countyData, loading } = useLocationViseData({ sheetData });
   const { nextData, previousData, isMoreData, currentPage, setCurrentPage } = useChartData({ chartData: activeChart === "city" ? cityData : countyData, limit: 20 });
 
   const [chartData, setChartData] = React.useState<any[]>([]);
+
   React.useEffect(() => {
     setCurrentPage(1);
     setChartData(activeChart === "city" ? JSON.parse(JSON.stringify(cityData)).slice(0, 20) : JSON.parse(JSON.stringify(countyData)).slice(0, 20));
-  }, [loading, activeChart]);
+  }, [loading, activeChart, cityData, countyData]);
 
   const handlePrevious = () => {
     setChartData(previousData());
@@ -52,14 +48,8 @@ const CountryChart = () => {
       city: cityData.length,
       county: countyData.length
     }),
-    [loading]
+    [loading, countyData, cityData]
   );
-
-  if (loading) {
-    <Card className="flex flex-col w-full rounded-none">
-      <Skeleton className="w-full h-48" />
-    </Card>;
-  }
 
   return (
     <Card>
@@ -103,32 +93,39 @@ const CountryChart = () => {
           })}
         </div>
       </CardHeader>
+
       <CardContent className="px-2 sm:p-6">
-        <ChartContainer config={chartConfig} className="aspect-auto h-[250px] w-full">
-          <BarChart
-            accessibilityLayer
-            data={chartData}
-            margin={{
-              left: 12,
-              right: 12
-            }}
-          >
-            <CartesianGrid vertical={false} />
-            <XAxis dataKey="label" tickLine={false} axisLine={false} tickMargin={4} minTickGap={32} />
-            <ChartTooltip
-              content={
-                <ChartTooltipContent
-                  className="w-[150px]"
-                  nameKey="count"
-                  labelFormatter={(value) => {
-                    return `Vehicles in ${value}`;
-                  }}
+        {loading || sheetLoading ? (
+          <Skeleton className="aspect-auto w-full h-[250px]" />
+        ) : (
+          <>
+            <ChartContainer config={chartConfig} className="aspect-auto h-[250px] w-full">
+              <BarChart
+                accessibilityLayer
+                data={chartData}
+                margin={{
+                  left: 12,
+                  right: 12
+                }}
+              >
+                <CartesianGrid vertical={false} />
+                <XAxis dataKey="label" tickLine={false} axisLine={false} tickMargin={4} minTickGap={32} />
+                <ChartTooltip
+                  content={
+                    <ChartTooltipContent
+                      className="w-[150px]"
+                      nameKey="count"
+                      labelFormatter={(value) => {
+                        return `Vehicles in ${value}`;
+                      }}
+                    />
+                  }
                 />
-              }
-            />
-            <Bar dataKey={"count"} fill={`var(--color-${activeChart})`} />
-          </BarChart>
-        </ChartContainer>
+                <Bar dataKey={"count"} fill={`var(--color-${activeChart})`} />
+              </BarChart>
+            </ChartContainer>
+          </>
+        )}
       </CardContent>
       <CardFooter>
         <div className="flex justify-center items-center gap-2 w-full">
@@ -148,4 +145,4 @@ const CountryChart = () => {
   );
 };
 
-export default CountryChart;
+export default React.memo(CountryChart);

@@ -1,24 +1,16 @@
 import Csv from "@/models/csv";
+import { WorkerType } from "@/workers/model";
+import { useWorker } from "../useWorker";
 
-type EligibleData = {
+export type EligibleData = {
   year: number;
   total: number;
 };
 
 const useEligibleData = ({ sheetData = [] }: { sheetData: Csv[] }) => {
-  const eligibleData: EligibleData[] = sheetData
-    .reduce<EligibleData[]>((acc, item) => {
-      const existing = acc?.find((entry) => entry.year === item["Model Year"] && item["Clean Alternative Fuel Vehicle (CAFV) Eligibility"] === "Clean Alternative Fuel Vehicle Eligible");
-      if (existing) {
-        existing.total += 1;
-      } else {
-        acc.push({ year: item["Model Year"], total: 1 });
-      }
-      return acc;
-    }, [])
-    ?.filter((item) => item.total !== 1);
+  const { loading, result } = useWorker<{ loading: boolean; eligibleData: EligibleData[] }>({ type: WorkerType.Eligible, data: sheetData });
 
-  return { eligibleData };
+  return { eligibleData: result?.eligibleData || [], loading };
 };
 
 export default useEligibleData;

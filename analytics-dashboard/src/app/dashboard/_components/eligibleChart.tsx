@@ -17,20 +17,24 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 function EligibleChart() {
-  const { sheetData, loading } = useSheetContext();
-  const { eligibleData } = useEligibleData({ sheetData });
+  const { sheetData, loading: sheetLoading } = useSheetContext();
+  const { eligibleData, loading } = useEligibleData({ sheetData });
 
-  if (loading) {
-    <Card className="flex flex-col w-full rounded-none">
-      <Skeleton className="w-full h-48" />
-    </Card>;
+  if (loading || sheetLoading) {
+    return (
+      <Card className="w-full rounded-none">
+        <CardContent className="pb-0">
+          <Skeleton className="mx-auto w-full aspect-square h-[350px]" />
+        </CardContent>
+      </Card>
+    );
   }
 
   return (
     <Card className="w-full rounded-none">
       <CardHeader className="items-center">
-        <CardTitle>Radar Chart - Dotss</CardTitle>
-        <CardDescription>Showing total visitors for the last 6 months</CardDescription>
+        <CardTitle>Clean Alternative Fuel Vehicle (CAFV) Eligibility</CardTitle>
+        <CardDescription>Showing EVs which are CAFV eligilbe</CardDescription>
       </CardHeader>
       <CardContent className="pb-0">
         <ChartContainer config={chartConfig} className="mx-auto aspect-square max-h-[250px]">

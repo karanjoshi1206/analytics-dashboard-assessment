@@ -8,7 +8,6 @@ const useChartData = ({ chartData, limit = 20 }: { chartData: any[]; limit: numb
       setCurrentPage((prev) => prev + 1);
     }
     const updatedData = [...chartData].slice((currentPage - 1) * limit, currentPage * limit);
-    console.log({ chartData, updatedData, currentPage, limit });
     return updatedData;
   };
 
@@ -19,7 +18,7 @@ const useChartData = ({ chartData, limit = 20 }: { chartData: any[]; limit: numb
     return [...chartData].slice((currentPage - 1) * limit, currentPage * limit);
   };
 
-  const isMoreData = currentPage * limit < chartData.length;
+  const isMoreData = currentPage * limit < chartData?.length;
 
   return { nextData, previousData, isMoreData, currentPage, setCurrentPage };
 };
