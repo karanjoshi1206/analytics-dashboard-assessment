@@ -10,15 +10,15 @@ import { DataTable } from "./_components/sheetTable/sheetTable";
 const Dashboard = () => {
   return (
     <SheetContextProvider>
-      <div className="m-2">
+      <div className="m-2 px-2 py-4">
         <CountryChart />
-        <div className="flex flex-1 w-full my-2 gap-2 flex-col md:flex-row">
+        <div className="flex flex-1 w-full my-4 gap-2 flex-col md:flex-row">
           <BranchChart />
           <EligibleChart />
         </div>
         <VehichleTypeChart />
 
-        <div className="my-4 p-4 border rounded-md shadow-sm bg-background">
+        <div className="my-4 p-4 border rounded-md shadow-sm bg-background card">
           <div className="flex items-center justify-between mb-4">
             <div>
               <h2 className="text-lg font-semibold leading-tight">Vehicle Data</h2>

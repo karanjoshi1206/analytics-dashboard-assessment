@@ -26,7 +26,7 @@ const BrandChart = () => {
   }
 
   return (
-    <Card className="flex flex-col w-full rounded-none">
+    <Card className="flex flex-col w-full rounded-none card">
       <CardHeader className="items-center pb-0">
         <CardTitle>EVs makers</CardTitle>
         <CardDescription>

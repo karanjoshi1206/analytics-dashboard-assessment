@@ -52,7 +52,7 @@ const CountryChart = () => {
   );
 
   return (
-    <Card>
+    <Card className="card">
       <CardHeader className="flex flex-col items-stretch space-y-0 border-b p-0 sm:flex-row">
         <div className="flex flex-1 flex-col justify-center gap-1 px-6 py-5 sm:py-6">
           <CardTitle>Location vise Fleet data</CardTitle>
@@ -128,17 +128,13 @@ const CountryChart = () => {
         )}
       </CardContent>
       <CardFooter>
-        <div className="flex justify-center items-center gap-2 w-full">
-          {currentPage > 1 && (
-            <Button onClick={handlePrevious} className="btn btn-primary">
-              Previous
-            </Button>
-          )}
-          {isMoreData && (
-            <Button onClick={handleNext} className="btn btn-primary">
-              Next
-            </Button>
-          )}
+        <div className="flex items-center justify-end space-x-2 py-4 w-full">
+          <Button variant="outline" size="sm" onClick={handlePrevious} disabled={currentPage === 1}>
+            Previous
+          </Button>
+          <Button variant="outline" size="sm" onClick={handleNext} disabled={!isMoreData}>
+            Next
+          </Button>
         </div>
       </CardFooter>
     </Card>

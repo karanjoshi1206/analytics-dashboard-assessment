@@ -51,7 +51,7 @@ const VehichleTypeChart = () => {
 
   if (loading || sheetLoading) {
     return (
-      <Card className="flex flex-col w-full rounded-none">
+      <Card className="flex flex-col w-full rounded-none ">
         <CardContent>
           <div className="flex items-center justify-center w-full h-48">
             <Skeleton className="w-full h-48" />
@@ -63,7 +63,7 @@ const VehichleTypeChart = () => {
 
   return (
     <div>
-      <Card>
+      <Card className="card">
         <CardHeader>
           <CardTitle>Cumulative Electric Vehicle Types Over Time</CardTitle>
           <CardDescription>

@@ -125,6 +125,7 @@ body {
     --chart-38: 190 60% 55%;
     --chart-39: 220 75% 65%;
     --chart-40: 270 50% 70%;
+    --grayish-border: 240 3.5% 30%;
   }
 }
 
@@ -134,5 +135,11 @@ body {
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .card {
+    @apply border-[hsl(var(--grayish-border))] shadow-xl rounded-[var(--radius)] hover:border-[hsl(var(--grayish-border))] transition-all duration-300;
   }
 }

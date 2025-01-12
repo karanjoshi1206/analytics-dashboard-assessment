@@ -28,7 +28,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased dark`}>
         <header className=" w-full bg-background/80 backdrop-blur-md border-b border-border/40 z-50">
-          <div className="container mx-auto flex justify-between items-center px-2 py-4">
+          <div className=" w-full flex justify-between items-center px-8 py-4">
             <Link href="/" className="flex items-center space-x-2">
               <Image src={"https://www.mapup.ai/mapup-logo.png"} height={20} width={100} alt="MapUp" />
             </Link>

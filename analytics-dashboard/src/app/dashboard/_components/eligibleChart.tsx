@@ -31,7 +31,7 @@ function EligibleChart() {
   }
 
   return (
-    <Card className="w-full rounded-none">
+    <Card className="w-full rounded-none card">
       <CardHeader className="items-center">
         <CardTitle>Clean Alternative Fuel Vehicle (CAFV) Eligibility</CardTitle>
         <CardDescription>Showing EVs which are CAFV eligilbe</CardDescription>
