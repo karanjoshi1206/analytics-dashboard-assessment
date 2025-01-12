@@ -1,6 +1,6 @@
 "use client";
 
-import { ColumnDef, flexRender, getCoreRowModel, getPaginationRowModel, getSortedRowModel, useReactTable } from "@tanstack/react-table";
+import {  flexRender, getCoreRowModel, getPaginationRowModel, getSortedRowModel, useReactTable } from "@tanstack/react-table";
 
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { columns } from "./columns";
@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 export function DataTable() {
   const { sheetData, loading: sheetLoading } = useSheetContext();
 
-  let { vehicleTableData: data, loading } = useTableData({ sheetData });
+  const { vehicleTableData: data, loading } = useTableData({ sheetData });
 
   const table = useReactTable({
     data,

@@ -6,7 +6,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { useSheetContext } from "@/context/useSheetData";
 import useLocationViseData from "@/hooks/transformers_hooks/useLocationViseData";
 import useChartData from "@/hooks/useChartData";
-import React, { useCallback, useEffect, useRef } from "react";
+import React from "react";
 import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
 
 const chartConfig = {

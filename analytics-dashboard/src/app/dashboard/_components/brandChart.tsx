@@ -5,7 +5,6 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Skeleton } from "@/components/ui/skeleton";
 import { useSheetContext } from "@/context/useSheetData";
 import useBrandData from "@/hooks/transformers_hooks/useBrandData";
-import { TrendingUp } from "lucide-react";
 import React from "react";
 import { Label, Pie, PieChart } from "recharts";
 

@@ -1,5 +1,4 @@
 import Csv from "@/models/csv";
-import { useState } from "react";
 import { useWorker } from "../useWorker";
 import { WorkerType } from "@/workers/model";
 

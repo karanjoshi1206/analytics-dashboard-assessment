@@ -1,6 +1,6 @@
 "use client";
 import Csv from "@/models/csv";
-import { parse, unparse } from "papaparse";
+import { parse } from "papaparse";
 import { useEffect, useState } from "react";
 
 const useCsv = () => {
