@@ -1,45 +1,52 @@
-# MapUp - Analytics Dashboard Assessment
+# EV Insights Dashboard
 
-## Overview
+A modern Next.js application for visualizing electric vehicle trends using interactive data visualizations. The app leverages web workers for performance optimization, ShadCN for UI components, and Chart.js for creating insightful graphs and charts.
 
-The objective of this assessment is to analyze the provided Electric Vehicle (EV) population data and create a frontend dashboard that visualizes key insights about the dataset. This repository contains the necessary data and instructions for you to demonstrate your analytical and dashboard creation skills. Feel free to use any tech stack you want to create the dashboard.
+## Features
 
-## Dataset
+- **Interactive Graphs**: Analyze EV trends with dynamic line, bar, and area charts.
+- **Data Insights**: Explore data by year, manufacturer, and EV type (BEV vs. PHEV).
+- **Web Worker Integration**: Offload data processing to web workers for smooth performance.
+- **Modern Design**: Built using ShadCN components and Tailwind CSS for a clean, responsive UI.
+- **Optimized Performance**: Efficiently handles large datasets with asynchronous parsing and rendering.
 
-The Electric Vehicle Population dataset is available in the [Electric Vehicle Population Data (CSV)](./data-to-visualize/Electric_Vehicle_Population_Data.csv) within this repository, for more information about the dataset visit [kaggle dataset](https://www.kaggle.com/datasets/willianoliveiragibin/electric-vehicle-population).
+## Technologies Used
 
-**Note:** We've reduced the dataset in the repository to keep the data size small in the frontend bundle.
+- **Frontend**: Next.js (React)
+- **Styling**: Tailwind CSS and ShadCN Component Library
+- **Data Parsing**: Papaparse for CSV data processing
+- **Visualization**: Recharts for creating interactive charts
+- **Performance**: Web workers for processing data off the main thread
 
-## Tasks
+## Getting Started
 
-### Dashboard Creation:
+Follow these steps to set up the project locally:
 
-- Create a frontend dashboard that presents key insights from the dataset.
-- Design the dashboard to effectively communicate important metrics and visualizations.
-- Include visual representations such as charts, graphs, or tables to showcase trends and relationships in the data.
-- Ensure the dashboard is user-friendly and intuitive for exploring the dataset.
+### Prerequisites
 
-### Deployment:
+- Node.js (v16 or higher)
+- npm, yarn, or pnpm
 
-- Deploy your frontend dashboard to a hosting platform of your choice.
-- Make sure the dashboard is publicly accessible.
+### Installation
 
-## Evaluation Criteria
+1. **Clone the Repository**
 
-Your submission will be evaluated based on:
+   ```bash
+   git clone https://github.com/karanjoshi1206/analytics-dashboard-assessment.git
+   cd analytics-dashboard-assessment/analytics-dashboard
+   ```
 
-- **Analytical Depth:** The depth of your analysis and insights derived from the dataset.
-- **Dashboard Design:** Clarity, aesthetics, and usability of the frontend dashboard.
-- **Insightfulness:** Effectiveness in conveying key insights about electric vehicles.
+2. **Install Packages**
 
-## Submission Guidelines
+   ```bash
+   npm install
+   ```
 
-- Fork this repository to your GitHub account.
-- Complete your analysis and create the frontend dashboard.
-- Deploy the dashboard to a hosting platform.
-- Update this [README.md](README.md) file with the URL to your live dashboard.
-- **Repository Access:** Keep your repository private to avoid visibility by other candidates. Add the following email addresses as collaborators to the repository, these are our internal emails and will be evaluating your assessment:
-  - vedantp@mapup.ai
-  - ajayap@mapupa.ai
-  - divyanshs@mapup.ai
-- Finally, please fill out the google form that you received via email to submit the assessment for review.
+3. **Run Development Server**
+   ```bash
+   npm run dev
+   ```
+
+
+# Visit the dashboard here
+[https://analytics-dashboard-assessment-three.vercel.app/dashboard](https://analytics-dashboard-assessment-three.vercel.app/dashboard)
